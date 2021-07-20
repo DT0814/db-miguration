@@ -108,7 +108,7 @@ object BootStart {
             return
         }
         val migrationSql = sql.appendedAll(s"insert into migration_process(id,name,hash) values($migrationVersion,'$migrationName','${md5(sql)}')")
-        log.info(s"run migrationSql\n $migrationSql")
+        log.debug(s"run migrationSql\n $migrationSql")
         val bool = migrationRepository.execute(migrationSql)
         if (!bool) {
           return
